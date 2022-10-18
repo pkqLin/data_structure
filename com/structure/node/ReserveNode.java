@@ -2,6 +2,11 @@ package structure.node;
 
 import structure.node.tools.Node;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ReserveNode {
 
     //获取一个1-5数字型的链表
@@ -23,9 +28,33 @@ public class ReserveNode {
     }
 
     public static void main(String[] args){
-        Node node =getNodeList();
+       /* Node node =getNodeList();
         node.print();
-        reserve(node).print();
+        reserve(node).print();*/
+        String[] a=new String[]{"IT资产类","非IT资产类","费用类","宣传用品类"};
+        String[] b=new String[]{"IT资产类","非IT资产类","费用类","宣传用品类"};
+        List<String> purchaseTypeList = new ArrayList<>();
+//        purchaseTypeList.add("IT资产类");
+        purchaseTypeList.add("宣传用品类");
+//        purchaseTypeList.add("非IT资产类");
+//        purchaseTypeList.add("宣传用品类");
+//        purchaseTypeList.add("非佣金支出类");
+        purchaseTypeList.add("健康险业务宣传类");
+        //目前结算的采购类型就这三种
+        List<String> allType= new ArrayList<>();
+        for (int m = 0; m < purchaseTypeList.size() ; m++) {
+            if (Arrays.asList(a).contains(purchaseTypeList.get(m))) {
+                allType.add("佣金支出类");
+            } else if ("非佣金支出类".equals(purchaseTypeList.get(m))) {
+                allType.add("非佣金支出类");
+            } else if ("健康险业务宣传类".equals(purchaseTypeList.get(m))) {
+                allType.add("健康险业务宣传类");
+            }
+        }
+        allType=allType.stream().distinct().collect(Collectors.toList());
+        for(String m:allType){
+            System.out.println(m);
+        }
     }
 
     //    1、双指针法
